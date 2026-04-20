@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FlowType</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- ═══════════════ HOME ═══════════════ -->
+<div id="sc-home" class="screen active">
+  <nav class="nav">
+    <div class="nav-logo" onclick="nav('home')">FLOWTYPE</div>
+    <div class="nav-tabs">
+      <button class="nav-tab on" onclick="nav('home')">Home</button>
+      <button class="nav-tab" onclick="nav('quests')">Quests</button>
+      <button class="nav-tab" onclick="nav('badges')">Badges</button>
+    </div>
+    <div class="nav-right">
+      <div class="npill xp">⚡ <span id="h-xp">0</span> XP</div>
+      <div class="npill str">🔥 <span id="h-str">1</span></div>
+      <div class="npill coi">🪙 <span id="h-coi">0</span></div>
+    </div>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu">☰</button>
+  </nav>
+
+  <!-- Mobile Menu Drawer -->
+  <div class="mobile-menu" id="mobile-menu">
+    <button class="nav-tab" onclick="nav('home');closeMobileMenu()">Home</button>
+    <button class="nav-tab" onclick="nav('quests');closeMobileMenu()">Quests</button>
+    <button class="nav-tab" onclick="nav('duel');closeMobileMenu()">1v1 Duel</button>
+    <button class="nav-tab" onclick="nav('dashboard');closeMobileMenu()">Dashboard</button>
+    <button class="nav-tab" onclick="nav('badges');closeMobileMenu()">Badges</button>
+    <button class="nav-tab" onclick="nav('daily');closeMobileMenu()">Daily</button>
+  </div>
+
+  <!-- Background orbs -->
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+
+  <!-- Mouse glow -->
+  <div class="mouse-glow" id="mouse-glow"></div>
+
+  <!-- Hero Section: Split Layout -->
+  <div class="hero-split">
+    <div class="hero-left animate-fadein-left">
+      <h1 class="hero-heading">
+        <span class="hero-h1-line1">Learn Typing</span>
+        <span class="hero-h1-line2">Like a Game</span>
+      </h1>
+      <p class="hero-sub">Level up your typing skills with immersive quests, real-time challenges, and unlock achievements as you become a keyboard master.</p>
+      <div class="hero-ctas">
+        <button class="glow-btn pu lg" onclick="nav('quests')">🗺️ Start Quest</button>
+        <button class="glow-btn cy lg" onclick="nav('duel')">⚔️ 1v1 Duel</button>
+        <button class="glow-btn ghost lg" onclick="nav('dashboard')">📊 Dashboard</button>
+      </div>
+    </div>
+    <div class="hero-right animate-fadein-right">
+      <!-- Animated 3D Keyboard -->
+      <div class="kb-wrapper">
+        <div class="kb-glow"></div>
+        <div class="kb-3d" id="animated-keyboard"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats Band -->
+  <div class="stats-band">
+    <div class="sb-card" style="--del:.1s"><div class="sbi">👥</div><div class="sbv" id="hs-lessons">0</div><div class="sbl">Quests Done</div></div>
+    <div class="sb-card" style="--del:.2s"><div class="sbi">⚡</div><div class="sbv" id="hs-wpm">0</div><div class="sbl">Best WPM</div></div>
+    <div class="sb-card" style="--del:.3s"><div class="sbi">🎯</div><div class="sbv" id="hs-acc">100%</div><div class="sbl">Avg Accuracy</div></div>
+    <div class="sb-card" style="--del:.4s"><div class="sbi">🏅</div><div class="sbv" id="hs-badges">0/30</div><div class="sbl">Badges</div></div>
+  </div>
+
+  <!-- Feature Grid -->
+  <div class="feat-grid">
+    <div class="feat-card" style="--del:.1s;--accent-line:linear-gradient(90deg,#7c3aed,#a855f7)">
+      <div class="feat-icon">🗺️</div>
+      <div class="feat-title">QUEST MAP</div>
+      <div class="feat-desc">Journey from beginner to legend through 15+ skill quests with finger guidance, live keyboard highlights, and XP rewards.</div>
+    </div>
+    <div class="feat-card" style="--del:.2s;--accent-line:linear-gradient(90deg,#06b6d4,#10b981)">
+      <div class="feat-icon">⚔️</div>
+      <div class="feat-title">1v1 DUELS</div>
+      <div class="feat-desc">Create private rooms, invite friends with a code, and battle in 8 unique duel modes from Classic to Survival and Blind Duel.</div>
+    </div>
+    <div class="feat-card" style="--del:.3s;--accent-line:linear-gradient(90deg,#fbbf24,#f97316)">
+      <div class="feat-icon">🏆</div>
+      <div class="feat-title">30 BADGES</div>
+      <div class="feat-desc">Earn shiny collectible badges across 6 categories — Progress, Skill, Multiplayer, Streak, Challenge, and Special.</div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-logo">FLOWTYPE</div>
+    <div class="footer-tagline">Learn. Duel. Conquer the Keyboard.</div>
+    <div class="footer-credit">Made by BloodStarc </div>
+  </footer>
+</div>
+
+<!-- ═══════════════ QUESTS ═══════════════ -->
+<div id="sc-quests" class="screen">
+  <nav class="nav">
+    <div class="nav-logo" onclick="nav('home')">FLOWTYPE</div>
+    <div class="nav-tabs">
+      <button class="nav-tab" onclick="nav('home')">Home</button>
+      <button class="nav-tab on">Quests</button>
+      <button class="nav-tab" onclick="nav('duel')">1v1 Duel</button>
+      <button class="nav-tab" onclick="nav('dashboard')">Dashboard</button>
+      <button class="nav-tab" onclick="nav('badges')">Badges</button>
+      <button class="nav-tab" onclick="nav('leaderboard')">Leaderboard</button>
+      <button class="nav-tab" onclick="nav('daily')">Daily</button>
+    </div>
+    <div class="nav-right">
+      <div class="npill xp">⚡ <span id="q-xp">0</span> XP</div>
+      <div class="npill str">🔥 <span id="q-str">1</span></div>
+    </div>
+    <button class="nav-hamburger" aria-label="Menu" onclick="toggleMobileMenu()">☰</button>
+  </nav>
+  <div class="mobile-menu" id="mobile-menu-quests">
+    <button class="nav-tab" onclick="nav('home');closeMobileMenu()">Home</button>
+    <button class="nav-tab" onclick="nav('quests');closeMobileMenu()">Quests</button>
+    <button class="nav-tab" onclick="nav('duel');closeMobileMenu()">1v1 Duel</button>
+    <button class="nav-tab" onclick="nav('dashboard');closeMobileMenu()">Dashboard</button>
+    <button class="nav-tab" onclick="nav('badges');closeMobileMenu()">Badges</button>
+    <button class="nav-tab" onclick="nav('leaderboard');closeMobileMenu()">Leaderboard</button>
+    <button class="nav-tab" onclick="nav('daily');closeMobileMenu()">Daily</button>
+  </div>
+  <div class="quest-wrap">
+    <div class="qm-head">
+      <h2>🗺️ QUEST MAP</h2>
+      <p>Master typing through progressive challenges. Each quest teaches new skills and rewards XP.</p>
+    </div>
+    <div id="quest-map-container"></div>
+  </div>
+</div>
+
+<!-- ═══════════════ LESSON ═══════════════ -->
+<div id="sc-lesson" class="screen">
+  <nav class="nav">
+    <button class="glow-btn ghost sm" onclick="nav('quests')" style="margin-right:8px">← Back</button>
+    <div class="nav-logo">FLOWTYPE</div>
+    <div class="nav-right">
+      <div class="npill str">🔥 <span id="l-str">1</span></div>
+      <div class="npill coi">🪙 <span id="l-coi">0</span></div>
+    </div>
+  </nav>
+  <div class="lesson-wrap">
+    <div class="practice-mode-bar" id="practice-bar" style="display:none">🎮 PRACTICE MODE — No XP, just training!</div>
+    <div class="lesson-topbar">
+      <div class="lesson-name" id="l-title">QUEST</div>
+      <div class="lesson-metrics">
+        <div class="lmc"><div class="lmv" id="l-wpm">0</div><div class="lml">WPM</div></div>
+        <div class="lmc"><div class="lmv" id="l-acc">100</div><div class="lml">ACC%</div></div>
+        <div class="lmc"><div class="lmv" id="l-time">0</div><div class="lml">SEC</div></div>
+        <div class="lmc"><div class="lmv" id="l-earn">0</div><div class="lml">🪙</div></div>
+      </div>
+    </div>
+    <div class="lprog"><div class="lprogf" id="l-pf" style="width:0%"></div></div>
+    <div class="l-instr-box">
+      <div class="l-finger" id="l-fg">👆</div>
+      <div class="l-instr-t">
+        <div class="lit" id="l-ins">Get ready!</div>
+        <div class="lisub" id="l-sub">Press any key or click Start to begin</div>
+      </div>
+    </div>
+    <div class="lkb-outer">
+      <div class="lkb-head">
+        <div class="lkb-brand">FLOWTYPE</div>
+        <div class="lkb-prog">
+          <div class="lkb-bar"><div class="lkb-barf" id="l-kp" style="width:0%"></div></div>
+          <div class="lkb-lbl" id="l-kpl">0% Complete</div>
+        </div>
+        <div style="font-size:10px;color:var(--mu);font-weight:700" id="l-kn">Lesson</div>
+      </div>
+      <div id="lkb"></div>
+      <div class="fpl"><div class="fptr" id="fptr" style="display:none">👆</div></div>
+    </div>
+    <div class="type-area" onclick="focusT()">
+      <div class="type-disp" id="tdsp"></div>
+    </div>
+    <input class="hinput" id="hinput" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-label="Type here">
+    <div class="lesson-ctrls">
+      <button class="glow-btn ghost sm" onclick="doRestart()">↺ Restart</button>
+      <button class="glow-btn pu sm" id="l-go" onclick="doStart()">▶ Start Quest</button>
+      <button class="glow-btn ghost sm" onclick="togglePractice()">🎮 Practice</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ DASHBOARD ═══════════════ -->
+<div id="sc-dashboard" class="screen">
+  <nav class="nav">
+    <div class="nav-logo" onclick="nav('home')">FLOWTYPE</div>
+    <div class="nav-tabs">
+      <button class="nav-tab" onclick="nav('home')">Home</button>
+      <button class="nav-tab" onclick="nav('quests')">Quests</button>
+      <button class="nav-tab" onclick="nav('duel')">1v1 Duel</button>
+      <button class="nav-tab on">Dashboard</button>
+      <button class="nav-tab" onclick="nav('badges')">Badges</button>
+      <button class="nav-tab" onclick="nav('leaderboard')">Leaderboard</button>
+      <button class="nav-tab" onclick="nav('daily')">Daily</button>
+    </div>
+    <div class="nav-right">
+      <div class="npill xp">⚡ <span id="db-xp">0</span> XP</div>
+      <div class="npill str">🔥 <span id="db-str">1</span></div>
+    </div>
+    <button class="nav-hamburger" aria-label="Menu" onclick="toggleMobileMenu()">☰</button>
+  </nav>
+  <div class="dash-wrap">
+    <div class="dash-title">📊 COMMAND CENTER</div>
+    <div class="dash-4">
+      <div class="ds wpm"><div class="dsi">⚡</div><div class="dsv" id="d-wpm">0</div><div class="dsl">Best WPM</div><div class="dss" id="d-wpm-s">Keep going!</div></div>
+      <div class="ds acc"><div class="dsi">🎯</div><div class="dsv" id="d-acc">100%</div><div class="dsl">Avg Accuracy</div><div class="dss">Last 10 sessions</div></div>
+      <div class="ds str"><div class="dsi">🔥</div><div class="dsv" id="d-str2">1</div><div class="dsl">Day Streak</div><div class="dss">Keep it lit!</div></div>
+      <div class="ds rnk"><div class="dsi">🏅</div><div class="dsv" id="d-rnk">—</div><div class="dsl">Current Rank</div><div class="dss" id="d-rnk-s">Win duels to rank up</div></div>
+    </div>
+    <div class="dash-2">
+      <div class="dc">
+        <div class="dct">📈 WPM HISTORY</div>
+        <div class="wpm-bars" id="wpm-chart"></div>
+      </div>
+      <div class="rank-card">
+        <div class="dct" style="justify-content:center">🏅 RANK</div>
+        <div class="rank-emblem" id="d-rank-emblem">🌱</div>
+        <div class="rank-name" id="d-rank-name">Newcomer</div>
+        <div class="rank-pb"><div class="rank-pbf" id="d-rank-pbf" style="width:5%"></div></div>
+        <div class="rank-pl" id="d-rank-pl">Complete quests to rank up</div>
+      </div>
+    </div>
+    <div class="dash-2b">
+      <div class="dc">
+        <div class="dct">🎯 ACCURACY RINGS</div>
+        <div class="acc-rings" id="acc-rings"></div>
+      </div>
+      <div class="dc">
+        <div class="dct">🔥 WEAK KEYS</div>
+        <div class="weak-keys" id="weak-keys"></div>
+      </div>
+    </div>
+    <div style="margin-top:14px">
+      <div class="dc">
+        <div class="dct">🕹️ RECENT ACTIVITY</div>
+        <div class="act-list" id="act-list"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ BADGES ═══════════════ -->
+<div id="sc-badges" class="screen">
+  <nav class="nav">
+    <div class="nav-logo" onclick="nav('home')">FLOWTYPE</div>
+    <div class="nav-tabs">
+      <button class="nav-tab" onclick="nav('home')">Home</button>
+      <button class="nav-tab" onclick="nav('quests')">Quests</button>
+      <button class="nav-tab" onclick="nav('duel')">1v1 Duel</button>
+      <button class="nav-tab" onclick="nav('dashboard')">Dashboard</button>
+      <button class="nav-tab on">Badges</button>
+      <button class="nav-tab" onclick="nav('leaderboard')">Leaderboard</button>
+      <button class="nav-tab" onclick="nav('daily')">Daily</button>
+    </div>
+    <div class="nav-right">
+      <div class="npill coi">🪙 <span id="b-coi">0</span></div>
+    </div>
+    <button class="nav-hamburger" aria-label="Menu" onclick="toggleMobileMenu()">☰</button>
+  </nav>
+  <div class="badges-wrap">
+    <div class="badges-head">
+      <h2 style="font-family:var(--font-head);font-size:26px;font-weight:700;letter-spacing:2px;background:linear-gradient(135deg,var(--gd),var(--or));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">🏆 BADGE COLLECTION</h2>
+      <p style="color:var(--mu);font-size:14px;margin-top:5px">Earn 30 unique badges across 6 categories. Each one proves your mastery.</p>
+      <div class="badges-prog"><div class="badges-progf" id="b-pf" style="width:0%"></div></div>
+      <div class="badges-progl"><span id="b-cnt">0</span> / 30 badges earned</div>
+    </div>
+    <div id="badge-container"></div>
+  </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
